@@ -1,3 +1,11 @@
+/*
+src/main.cpp
+github project : https:://github.com/SourceCode2/matrici_Cramer.git
+
+The Cramer method in C++
+Copyright (C) 2017  Davide Sofronia
+License GPLv3
+*/
 #include <iostream>
 #include <string>
 #include "cramer.h"
@@ -20,6 +28,6 @@ int main(int argc, char* argv[]) {
   cramer oggetto;
   oggetto.insert(input);
   RESULT_CRAMER risultato = oggetto.resolve();
-  std::cout << risultato.resultX << '\n';
-  std::cerr << risultato.resultY << '\n';
+  std::cout << "x = " << risultato.resultX.numeratore << "/" << risultato.resultX.denominatore << '\n';
+  std::cout << "y = " << risultato.resultY.numeratore << "/" << risultato.resultY.denominatore << '\n';
 }
