@@ -11,7 +11,7 @@ License GPLv3
 #include <cstdlib>
 #include <ctype.h>
 #include <string>
-void cramer::insert(INPUT_CRAMER input) {
+cramer::cramer(INPUT_CRAMER input) {
   /*== Inserimento dati nella matrice ==*/
   process(input.x1, 0, 0);
   process(input.y1, 0, 1);

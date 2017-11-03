@@ -29,7 +29,7 @@ struct RESULT_CRAMER {
 
 class cramer {
 public:
-  void insert(INPUT_CRAMER input); // Inserire i dati sottoforma dello struct INPUT_CRAMER
+  cramer(INPUT_CRAMER input); // Inserire i dati sottoforma dello struct INPUT_CRAMER
   RESULT_CRAMER resolve(); // Eseguire il metodo di Cramer e ritornare i risultati
 
 private:
