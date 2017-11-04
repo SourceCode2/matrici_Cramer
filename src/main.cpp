@@ -8,7 +8,7 @@ License GPLv3
 */
 #include <iostream>
 #include <string>
-#include "cramer/cramer.h"
+#include "cramer/cramer.h" // oppure #include <cramer.h> dopo aver installato le librerie
 
 int main(int argc, char* argv[]) {
   /*== Inizializzazione variabili ==*/

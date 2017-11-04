@@ -6,8 +6,7 @@ The Cramer method in C++ with fractions
 Copyright (C) 2017  Davide Sofronia
 License GPLv3
 */
-#include "Fraction/Fraction.h"
-//#include <Fraction.h> // Dopo aver installato le librerie
+#include "Fraction/Fraction.h" // oppure #include <Fraction.h> dopo aver installato le librerie
  int main(int argc, char const *argv[]) {
    Fraction addendo1(1);
    Fraction addendo2(1,2);
