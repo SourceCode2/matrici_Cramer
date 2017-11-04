@@ -1,8 +1,8 @@
 /*
-src/cramer.h
-github project : https:://github.com/SourceCode2/matrici_Cramer.git
+src/cramer/cramer.h
+github project https://github.com/SourceCode2/matrici_Cramer.git
 
-The Cramer method in C++
+The Cramer method in C++ with fractions
 Copyright (C) 2017  Davide Sofronia
 License GPLv3
 */

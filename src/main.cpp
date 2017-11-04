@@ -1,14 +1,14 @@
 /*
 src/main.cpp
-github project : https:://github.com/SourceCode2/matrici_Cramer.git
+github project https://github.com/SourceCode2/matrici_Cramer.git
 
-The Cramer method in C++
+The Cramer method in C++ with fractions
 Copyright (C) 2017  Davide Sofronia
 License GPLv3
 */
 #include <iostream>
 #include <string>
-#include "cramer.h"
+#include "cramer/cramer.h"
 
 int main(int argc, char* argv[]) {
   /*== Inizializzazione variabili ==*/
@@ -25,8 +25,7 @@ int main(int argc, char* argv[]) {
   std::cin.sync();
 
   /*== MAIN ==*/
-  cramer oggetto;
-  oggetto.insert(input);
+  cramer oggetto(input);
   RESULT_CRAMER risultato = oggetto.resolve();
   std::cout << "x = " << risultato.resultX.numeratore << "/" << risultato.resultX.denominatore << '\n';
   std::cout << "y = " << risultato.resultY.numeratore << "/" << risultato.resultY.denominatore << '\n';
