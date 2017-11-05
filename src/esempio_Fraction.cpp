@@ -7,11 +7,27 @@ Copyright (C) 2017  Davide Sofronia
 License GPLv3
 */
 #include "Fraction/Fraction.h" // oppure #include <Fraction.h> dopo aver installato le librerie
- int main(int argc, char const *argv[]) {
-   Fraction addendo1(1);
-   Fraction addendo2(1,2);
-   Fraction addendo3(1,3);
-   auto risultato = addendo1 + addendo2 + addendo3;
-   risultato.print();
+#include <iostream>
+int main(int argc, char const *argv[]) {
+  Fraction addendo1(1);
+  Fraction addendo2(1,2);
+  Fraction addendo3(1,3);
+  auto risultato = addendo1 + addendo2 + addendo3;
+  std::cout << "1 + 1/2 + 1/3 = "; risultato.print(); std::cout << '\n';
+
+  Fraction minuendo(2,2);
+  Fraction sottraendo(1,2);
+  risultato = minuendo - sottraendo;
+  std::cout << "2/2 - 1/2 = ";  risultato.print(); std::cout << '\n';
+
+  Fraction fattore1(2,4);
+  Fraction fattore2(2,6);
+  risultato = fattore1 * fattore2;
+  std::cout << "2/4 * 2/6 = ";  risultato.print(); std::cout << '\n';
+
+  Fraction dividendo(3,5);
+  Fraction divisore(4,9);
+  risultato = dividendo / divisore;
+  std::cout << "3/5 / 4/9 = "; risultato.print(); std::cout << '\n';
    return 0;
  }

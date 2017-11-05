@@ -9,10 +9,10 @@ License GPLv3
 #include "Fraction.h"
 #include <iostream>
 Fraction::Fraction(const int numer, const int denom) {
-	this->numer = numer;
-	this->denom = denom;
-  this->reduce();
-	if (denom < 0) {
+	auto MCD = this->MCD(numer, denom);
+	this->numer = numer / MCD;
+	this->denom = denom / MCD;
+	if (this->denom < 0 && numer < 0) {
 		this->denom *= -1;
 		this->numer *= -1;
 	}
@@ -27,6 +27,34 @@ Fraction::Fraction()
 Fraction Fraction::Reciprocal() const {
 	Fraction ret(this->denom, this->numer);
 	return ret;
+}
+
+int Fraction::MCD(int x, int y) const {
+  /* Scambio valori Variabili */
+  if(y > x) {
+    int appo = x;
+    x = y;
+    y = appo;
+  }
+  /* Dichiarazione Variabili */
+  int q = 1;
+  int r = 1;
+  int mcd = 0;
+  if(x == 0 && y == 0)
+      return 0;
+  else if(x == 0)
+      return y;
+  else if(y == 0)
+      return x;
+
+  while(y != 0) {
+    mcd = y;
+    q = x / y;
+    r = x % y;
+    x = y;
+    y = r;
+  }
+  return mcd;
 }
 
 int Fraction::mcm(int nr1, int nr2) const {
@@ -80,15 +108,12 @@ Fraction Fraction::operator-(const Fraction &x)const {
 }
 
 Fraction Fraction::operator*(const Fraction &x)const {
-	Fraction left(x.numer, this->denom);
-	Fraction right(this->numer, x.denom);
-
-	Fraction ret(left.numer * right.numer, left.denom * right.denom);
+	Fraction ret(this->numer * x.numer, this->denom * x.denom);
 	return ret;
 }
 
 Fraction Fraction::operator/(const Fraction &x)const {
-	auto ret = *this * this->Reciprocal();
+	auto ret = *this * x.Reciprocal();
 	return ret;
 }
 

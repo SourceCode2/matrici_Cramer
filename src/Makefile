@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall --std=c++11
 cramer:
-	$(CC) -o ciao main.cpp Fraction/Fraction.cpp cramer/cramer.cpp $(CFLAGS)
+	$(CC) -o ../bin/cramer main.cpp Fraction/Fraction.cpp cramer/cramer.cpp $(CFLAGS)
 install:
 	$(CC) -c Fraction/Fraction.cpp cramer/cramer.cpp
 	ar r libFraction.a Fraction.o
