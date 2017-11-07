@@ -8,11 +8,11 @@ Uso Atom su Ubuntu 17.10 con i3-wm.
 
 # Compilazione
 cd src/  
-sudo make install
-make -B cramer
-make -B esempio_Fraction
+sudo make install  
+make -B cramer  
+make -B esempio_Fraction  
 
-Inoltre quando compili usando queste librerie aggiungi le flag -lcramer e -lFraction  
+Inoltre quando compili usando queste librerie aggiungi le flag -lcramer e -lFraction    
 
 # Presentazione del Metodo di Cramer
 https://sites.google.com/liceodemocrito.it/matrice-ti-nspire-cx-cas/  
