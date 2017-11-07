@@ -12,10 +12,7 @@ sudo make install
 make -B cramer
 make -B esempio_Fraction
 
-# Librerie
-Nel caso si vogliono installare le librerie :  
-sudo make install  
-Inoltre quando compili aggiungi le flag -lcramer e -lFraction  
+Inoltre quando compili usando queste librerie aggiungi le flag -lcramer e -lFraction  
 
 # Presentazione del Metodo di Cramer
 https://sites.google.com/liceodemocrito.it/matrice-ti-nspire-cx-cas/  
