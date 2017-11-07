@@ -11,9 +11,7 @@ License GPLv3
 using Fraction_ns::Fraction;
 
 int main(int argc, char const *argv[]) {
-  Fraction ciao = Fraction(+1);
-  ciao.print();
-/*  Fraction addendo1(1);
+  Fraction addendo1(1);
   Fraction addendo2(1,2);
   Fraction addendo3(1,3);
   auto risultato = addendo1 + addendo2 + addendo3;
@@ -33,5 +31,5 @@ int main(int argc, char const *argv[]) {
   Fraction divisore(4,9);
   risultato = dividendo / divisore;
   std::cout << "3/5 / 4/9 = "; risultato.print(); std::cout << '\n';
-*/   return 0;
+   return 0;
  }

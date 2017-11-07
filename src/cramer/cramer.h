@@ -14,14 +14,26 @@ License GPLv3
 using namespace Fraction_ns;
 namespace cramer_ns {
 
-  struct INPUT_CRAMER {
-    /*== Prima equazione ==*/
-    std::string x1, y1;    // Le due/tre incognite
+  struct INPUT_CRAMER2x2 {
+    /*== Prima equazione   ==*/
+    std::string x1, y1;        // Le due incognite
     std::string noto1;         // Il valore noto
     /*== Seconda equazione ==*/
-    std::string x2, y2;    // Le due/tre incognite
+    std::string x2, y2;        // Le due incognite
     std::string noto2;         // Il valore noto
   };
+  struct INPUT_CRAMER3x3 {
+    /*== Prima equazione   ==*/
+    std::string x1, y1, z1;   // Le tre incognite
+    std::string noto1;        // Il valore noto
+    /*== Seconda equazione ==*/
+    std::string x2, y2, z2;   // Le tre incognite
+    std::string noto2;        // Il valore noto
+    /*== Terza equazione   ==*/
+    std::string x3, y3, z3;   // Le tre incognite
+    std::string noto3;        // Il valore noto
+  };
+
   class cramer {
   protected:
     Fraction process(std::string var); // Elaborare i dati
@@ -29,7 +41,7 @@ namespace cramer_ns {
 
   class cramer2x2 : public cramer {
   public:
-    cramer2x2(INPUT_CRAMER input); // Inserire i dati sottoforma di INPUT_CRAMER
+    cramer2x2(INPUT_CRAMER2x2 input); // Inserire i dati sottoforma di INPUT_CRAMER
     Fraction funcX();
     Fraction funcY();
   private:
@@ -41,7 +53,7 @@ namespace cramer_ns {
 
   class cramer3x3 : public cramer {
   public:
-    cramer3x3(INPUT_CRAMER input); // Inserire i dati sottoforma di INPUT_CRAMER
+    cramer3x3(INPUT_CRAMER3x3 input); // Inserire i dati sottoforma di INPUT_CRAMER
     Fraction funcX();
     Fraction funcY();
     Fraction funcZ();

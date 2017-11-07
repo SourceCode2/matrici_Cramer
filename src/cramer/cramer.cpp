@@ -37,7 +37,9 @@ namespace cramer_ns {
     }
     return Fraction(atoi(tmp.c_str()));
   }
-  cramer2x2::cramer2x2(INPUT_CRAMER input) {
+
+  /*== Cramer 2x2 ==*/
+  cramer2x2::cramer2x2(INPUT_CRAMER2x2 input) {
     /*== Inserimento dati nella matrice ==*/
     matrice[0][0] = process(input.x1);
     matrice[0][1] = process(input.y1);
@@ -48,7 +50,7 @@ namespace cramer_ns {
 
     /*== Metodo di Cramer ==*/
 
-    /*== Determinatore ==*/
+    /*== Determinante ==*/
     Det = (matrice[0][0] * matrice[1][1]) - (matrice[1][0] * matrice[0][1]);
     FRACTION controllo = Det.value();
     if(controllo.numer / controllo.denom == 0) {
@@ -56,14 +58,77 @@ namespace cramer_ns {
       exit(-1);
     }
 
-    /*== Determinatore X ==*/
+    /*== Determinante X ==*/
     DetX = (noto[0] * matrice[1][1]) - (noto[1] * matrice[0][1]);
     resultX = DetX / Det;
 
-    /*== Determinatore Y ==*/ // DetY = (matrice[0][0].nr_int*noto1)-(matrice[1][0].nr_int*noto2);
+    /*== Determinante Y ==*/
     DetY = (matrice[0][0] * noto[1]) - (matrice[1][0] - noto[0]);
     resultY = DetY / Det;
   }
   Fraction cramer2x2::funcX() {return resultX;}
   Fraction cramer2x2::funcY() {return resultY;}
+
+  /*== Cramer 3x3 ==*/
+  cramer3x3::cramer3x3(INPUT_CRAMER3x3 input) {
+    matrice[0][0] = process(input.x1);
+    matrice[1][0] = process(input.x2);
+    matrice[2][0] = process(input.x3);
+    matrice[0][1] = process(input.y1);
+    matrice[1][1] = process(input.y2);
+    matrice[2][1] = process(input.y3);
+    matrice[0][2] = process(input.z1);
+    matrice[1][2] = process(input.z2);
+    matrice[2][2] = process(input.z3);
+    noto[0]       = process(input.noto1);
+    noto[1]       = process(input.noto2);
+    noto[2]       = process(input.noto3);
+
+    /*== Determinante ==*/
+    Det =  (matrice[0][0]*matrice[1][1]*matrice[2][2]);
+    Det += (matrice[0][1]*matrice[1][2]*matrice[2][0]);
+    Det += (matrice[0][2]*matrice[1][0]*matrice[2][1]);
+    Det -= (matrice[2][0]*matrice[1][1]*matrice[0][2]);
+    Det -= (matrice[2][1]*matrice[1][2]*matrice[0][0]);
+    Det -= (matrice[2][2]*matrice[1][0]*matrice[0][1]);
+    Det.print();std::cout << '\n';
+    FRACTION controllo = Det.value();
+    if(controllo.numer / controllo.denom == 0) {
+      std::cerr << "Equazioni impossibili" << '\n';
+      exit(-1);
+    }
+
+    /*== Determinante X ==*/
+    DetX =  (noto[0]*matrice[1][1]*matrice[2][2]);
+    DetX += (matrice[0][1]*matrice[1][2]*noto[2]);
+    DetX += (matrice[0][2]*noto[1]*matrice[2][1]);
+    DetX -= (noto[2]*matrice[1][1]*matrice[0][2]);
+    DetX -= (matrice[2][1]*matrice[1][2]*noto[0]);
+    DetX -= (matrice[2][2]*noto[1]*matrice[0][1]);
+    DetX.print();std::cout << '\n';
+    resultX = DetX / Det;
+
+    /*== Determinante Y ==*/
+    DetY =  (matrice[0][0]*noto[1]*matrice[2][2]);
+    DetY += (noto[0]*matrice[1][2]*matrice[2][0]);
+    DetY += (matrice[0][2]*matrice[1][0]*noto[2]);
+    DetY -= (matrice[2][0]*noto[1]*matrice[0][2]);
+    DetY -= (noto[2]*matrice[1][2]*matrice[0][0]);
+    DetY -= (matrice[2][2]*matrice[1][0]*noto[0]);
+    DetY.print();std::cout << '\n';
+    resultY = DetY / Det;
+
+    /*== Determinante Z ==*/
+    DetZ =  (matrice[0][0]*matrice[1][1]*noto[2]);
+    DetZ += (matrice[0][1]*noto[1]*matrice[2][0]);
+    DetZ += (noto[0]*matrice[1][0]*matrice[2][1]);
+    DetZ -= (matrice[2][0]*matrice[1][1]*noto[0]);
+    DetZ -= (matrice[2][1]*noto[1]*matrice[0][0]);
+    DetZ -= (noto[2]*matrice[1][0]*matrice[0][1]);
+    DetZ.print();std::cout << '\n';
+    resultZ = DetZ / Det;
+  }
+  Fraction cramer3x3::funcX() {return resultX;}
+  Fraction cramer3x3::funcY() {return resultY;}
+  Fraction cramer3x3::funcZ() {return resultZ;}
 } // end namespace
