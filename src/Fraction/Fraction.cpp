@@ -8,175 +8,173 @@ License GPLv3
 */
 #include "Fraction.h"
 #include <iostream>
-Fraction::Fraction(const int numer, const int denom) {
-	auto MCD = this->MCD(numer, denom);
-	this->numer = numer / MCD;
-	this->denom = denom / MCD;
-	if (this->denom < 0 && numer < 0) {
-		this->denom *= -1;
-		this->numer *= -1;
+#include <string>
+namespace Fraction_ns {
+	Fraction::Fraction(const int numer, const int denom) {
+		auto MCD = this->MCD(numer, denom);
+		this->numer = numer / MCD;
+		this->denom = denom / MCD;
+		if (this->denom < 0 && numer < 0) {
+			this->denom *= -1;
+			this->numer *= -1;
+		}
 	}
-}
 
-Fraction::Fraction(const int x)
-	:Fraction(x, 1) {}
+	Fraction::Fraction(const int x)
+		:Fraction(x, 1) {}
 
-Fraction::Fraction()
-	:Fraction(0) {}
+		Fraction::Fraction()
+		:Fraction(0) {}
 
-Fraction Fraction::Reciprocal() const {
-	Fraction ret(this->denom, this->numer);
-	return ret;
-}
+		Fraction Fraction::Reciprocal() const {
+			Fraction ret(this->denom, this->numer);
+			return ret;
+		}
 
-int Fraction::MCD(int x, int y) const {
-  /* Scambio valori Variabili */
-  if(y > x) {
-    int appo = x;
-    x = y;
-    y = appo;
-  }
-  /* Dichiarazione Variabili */
-  int q = 1;
-  int r = 1;
-  int mcd = 0;
-  if(x == 0 && y == 0)
-      return 0;
-  else if(x == 0)
-      return y;
-  else if(y == 0)
-      return x;
+		int Fraction::MCD(int x, int y) const {
+  	/* Scambio valori Variabili */
+  	if(y > x) {
+    	int appo = x;
+    	x = y;
+    	y = appo;
+  	}
+  	/* Dichiarazione Variabili */
+  	int q = 1;
+  	int r = 1;
+  	int mcd = 0;
+  	if(x == 0 && y == 0)
+      	return 0;
+  		else if(x == 0)
+      	return y;
+  		else if(y == 0)
+      	return x;
 
-  while(y != 0) {
-    mcd = y;
-    q = x / y;
-    r = x % y;
-    x = y;
-    y = r;
-  }
-  return mcd;
-}
+  		while(y != 0) {
+    	mcd = y;
+    	q = x / y;
+    	r = x % y;
+    	x = y;
+    	y = r;
+  	}
+  	return mcd;
+	}
 
-int Fraction::mcm(int nr1, int nr2) const {
-  int swap;
-  int nr3, nr4, r, MCD;
-  if (nr2>nr1) { swap = nr2; nr2 = nr1; nr1 = swap;}
-  nr3 = nr1;
-  nr4 = nr2;
+	int Fraction::mcm(int nr1, int nr2) const {
+  	/*== Calcolo mcm ==*/
+  	return (nr1 * nr2)/MCD(nr1, nr2);
+	}
 
-  /*== Calcolo MCD ==*/
-  r = nr3 % nr4;
-  while(r!=0) {
-    nr3 = nr4;
-    nr4 = r;
-    r = nr3 % nr4;
-  }
-  MCD = nr4;
+	void Fraction::reduce() {
+  	int i=2;
+  	int min; //Il più basso fra numeratore e denominatore
+  	if(this->numer > this->denom) {min=this->denom;}
+  	else {min = this->numer;}
+  	do{
+    	if((this->numer % i == 0) && (this->denom % i == 0)) {
+      	this->numer = this->numer / i;
+      	this->denom = this->denom / i;
+    	} else {i++;}
+   	}while(i<=min);
+	}
 
-  /*== Calcolo mcm ==*/
-  return (nr1 * nr2)/MCD;
-}
+	void Fraction::print() {
+  	std::cout << this->numer << "/" << this->denom;
+	}
+	std::string Fraction::Improper() const {
+		auto numer = std::to_string(this->numer);
+		auto denom = std::to_string(this->denom);
+		auto ret = numer + "/" + denom;
+		return ret;
+	}
 
-void Fraction::reduce() {
-  int i=2;
-  int min; //Il più basso fra numeratore e denominatore
-  if(this->numer > this->denom) {min=this->denom;}
-  else {min = this->numer;}
-  do{
-    if((this->numer % i == 0) && (this->denom % i == 0)) {
-      this->numer = this->numer / i;
-      this->denom = this->denom / i;
-    } else {i++;}
-   }while(i<=min);
-}
+	FRACTION Fraction::value() {
+		FRACTION ret{this->numer, this->denom};
+		return ret;
+	}
+	Fraction Fraction::operator+(const Fraction &x)const {
+		auto denom = mcm(this->denom, x.denom);
+		auto numer = this->numer*(denom / this->denom) + x.numer*(denom / x.denom);
 
-void Fraction::print() {
-  std::cout << this->numer << "/" << this->denom << '\n';
-}
+		Fraction ret(numer, denom);
+		return ret;
+	}
 
-Fraction Fraction::operator+(const Fraction &x)const {
-	auto denom = mcm(this->denom, x.denom);
-	auto numer = this->numer*(denom / this->denom) + x.numer*(denom / x.denom);
+	Fraction Fraction::operator-(const Fraction &x)const {
+		auto ret = *this + Fraction(-x.numer, x.denom);
+		return ret;
+	}
 
-	Fraction ret(numer, denom);
-	return ret;
-}
+	Fraction Fraction::operator*(const Fraction &x)const {
+		Fraction ret(this->numer * x.numer, this->denom * x.denom);
+		return ret;
+	}
 
-Fraction Fraction::operator-(const Fraction &x)const {
-	auto ret = *this + Fraction(-x.numer, x.denom);
-	return ret;
-}
+	Fraction Fraction::operator/(const Fraction &x)const {
+		auto ret = *this * x.Reciprocal();
+		return ret;
+	}
 
-Fraction Fraction::operator*(const Fraction &x)const {
-	Fraction ret(this->numer * x.numer, this->denom * x.denom);
-	return ret;
-}
+	Fraction& Fraction::operator+=(const Fraction &x) {
+		*this = *this + x;
+		return *this;
+	}
 
-Fraction Fraction::operator/(const Fraction &x)const {
-	auto ret = *this * x.Reciprocal();
-	return ret;
-}
+	Fraction& Fraction::operator-=(const Fraction &x) {
+		*this = *this - x;
+		return *this;
+	}
 
-Fraction& Fraction::operator+=(const Fraction &x) {
-	*this = *this + x;
-	return *this;
-}
+	Fraction& Fraction::operator*=(const Fraction &x) {
+		*this = *this * x;
+		return *this;
+	}
 
-Fraction& Fraction::operator-=(const Fraction &x) {
-	*this = *this - x;
-	return *this;
-}
+	Fraction& Fraction::operator/=(const Fraction &x) {
+		*this = *this / x;
+		return *this;
+	}
 
-Fraction& Fraction::operator*=(const Fraction &x) {
-	*this = *this * x;
-	return *this;
-}
+	Fraction& Fraction::operator=(const Fraction &x) {
+		this->denom = x.denom;
+		this->numer = x.numer;
 
-Fraction& Fraction::operator/=(const Fraction &x) {
-	*this = *this / x;
-	return *this;
-}
+		return *this;
+	}
 
-Fraction& Fraction::operator=(const Fraction &x) {
-	this->denom = x.denom;
-	this->numer = x.numer;
+	Fraction Fraction::operator+(const int &x)const {
+		return this->operator+(Fraction(x));
+	}
 
-	return *this;
-}
+	Fraction Fraction::operator-(const int &x)const {
+		return this->operator-(Fraction(x));
+	}
 
-Fraction Fraction::operator+(const int &x)const {
-	return this->operator+(Fraction(x));
-}
+	Fraction Fraction::operator*(const int &x)const {
+		return this->operator*(Fraction(x));
+	}
 
-Fraction Fraction::operator-(const int &x)const {
-	return this->operator-(Fraction(x));
-}
+	Fraction Fraction::operator/(const int &x)const {
+		return this->operator/(Fraction(x));
+	}
 
-Fraction Fraction::operator*(const int &x)const {
-	return this->operator*(Fraction(x));
-}
+	Fraction& Fraction::operator+=(const int &x) {
+		return this->operator+=(Fraction(x));
+	}
 
-Fraction Fraction::operator/(const int &x)const {
-	return this->operator/(Fraction(x));
-}
+	Fraction& Fraction::operator-=(const int &x) {
+		return this->operator-=(Fraction(x));
+	}
 
-Fraction& Fraction::operator+=(const int &x) {
-	return this->operator+=(Fraction(x));
-}
+	Fraction& Fraction::operator*=(const int &x) {
+		return this->operator*=(Fraction(x));
+	}
 
-Fraction& Fraction::operator-=(const int &x) {
-	return this->operator-=(Fraction(x));
-}
+	Fraction& Fraction::operator/=(const int &x) {
+		return this->operator/=(Fraction(x));
+	}
 
-Fraction& Fraction::operator*=(const int &x) {
-	return this->operator*=(Fraction(x));
-}
-
-Fraction& Fraction::operator/=(const int &x) {
-	return this->operator/=(Fraction(x));
-}
-
-Fraction& Fraction::operator=(const int &x) {
-	*this = Fraction(x);
-	return *this;
-}
+	Fraction& Fraction::operator=(const int &x) {
+		*this = Fraction(x);
+		return *this;
+	}
+} // end namespace Fraction

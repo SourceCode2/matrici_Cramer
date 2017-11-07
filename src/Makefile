@@ -1,14 +1,22 @@
 CC = g++
 CFLAGS = -Wall --std=c++11
+LIB = -lFraction -lcramer
 cramer:
-	$(CC) -o ../bin/cramer main.cpp Fraction/Fraction.cpp cramer/cramer.cpp $(CFLAGS)
+	$(CC) -o ../bin/cramer main.cpp $(CFLAGS) $(LIB)
+esempio_Fraction:
+	$(CC) -o ../bin/esempio_Fraction esempio_Fraction.cpp $(CFLAGS) -lFraction
 install:
 	$(CC) -c Fraction/Fraction.cpp cramer/cramer.cpp
-	ar r libFraction.a Fraction.o
-	sudo mv libFraction.a /usr/lib/
-	ar r libcramer.a cramer.o
-	sudo mv libcramer.a /usr/lib/
+	ar r ../lib/libFraction.a Fraction.o
+	sudo cp ../lib/libFraction.a /usr/lib/
+	ar r ../lib/libcramer.a cramer.o
+	sudo cp ../lib/libcramer.a /usr/lib/
 	sudo cp Fraction/Fraction.h /usr/include/
 	sudo cp cramer/cramer.h /usr/include/
-clean:
 	rm -f cramer.o Fraction.o
+fraction:
+	$(CC) -c Fraction/Fraction.cpp
+	ar r ../lib/libFraction.a Fraction.o
+	sudo cp ../lib/libFraction.a /usr/lib/
+	sudo cp Fraction/Fraction.h /usr/include/
+	rm -f Fraction.o

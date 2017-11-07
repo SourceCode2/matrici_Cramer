@@ -6,10 +6,14 @@ The Cramer method in C++ with fractions
 Copyright (C) 2017  Davide Sofronia
 License GPLv3
 */
-#include "Fraction/Fraction.h" // oppure #include <Fraction.h> dopo aver installato le librerie
+#include <Fraction.h>
 #include <iostream>
+using Fraction_ns::Fraction;
+
 int main(int argc, char const *argv[]) {
-  Fraction addendo1(1);
+  Fraction ciao = Fraction(+1);
+  ciao.print();
+/*  Fraction addendo1(1);
   Fraction addendo2(1,2);
   Fraction addendo3(1,3);
   auto risultato = addendo1 + addendo2 + addendo3;
@@ -29,5 +33,5 @@ int main(int argc, char const *argv[]) {
   Fraction divisore(4,9);
   risultato = dividendo / divisore;
   std::cout << "3/5 / 4/9 = "; risultato.print(); std::cout << '\n';
-   return 0;
+*/   return 0;
  }

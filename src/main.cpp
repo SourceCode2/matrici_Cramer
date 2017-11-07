@@ -8,11 +8,11 @@ License GPLv3
 */
 #include <iostream>
 #include <string>
-#include "cramer/cramer.h" // oppure #include <cramer.h> dopo aver installato le librerie
-
+#include <cramer.h>
+#include <Fraction.h>
 int main(int argc, char* argv[]) {
   /*== Inizializzazione variabili ==*/
-  INPUT_CRAMER input;
+  cramer_ns::INPUT_CRAMER input;
   std::string null;
 
   /*== Input dati ==*/
@@ -23,10 +23,10 @@ int main(int argc, char* argv[]) {
   std::cout << "Inserisci la seconda equazione in forma normale (+1x +2y = -1): "; // Example : +2x+3y = +1  +1/2x+5g = +5
   std::cin >> input.x2 >> input.y2 >> null >> input.noto2;
   std::cin.sync();
-
   /*== MAIN ==*/
-  cramer oggetto(input);
-  RESULT_CRAMER risultato = oggetto.resolve();
-  std::cout << "x = " << risultato.resultX.numeratore << "/" << risultato.resultX.denominatore << '\n';
-  std::cout << "y = " << risultato.resultY.numeratore << "/" << risultato.resultY.denominatore << '\n';
+  cramer_ns::cramer2x2 oggetto(input);
+  Fraction_ns::Fraction risultatoX = oggetto.funcX();
+  Fraction_ns::Fraction risultatoY = oggetto.funcY();
+  std::cout << "x = ";risultatoX.print(); std::cout << '\n';
+  std::cout << "y = ";risultatoY.print(); std::cout << '\n';
 }
