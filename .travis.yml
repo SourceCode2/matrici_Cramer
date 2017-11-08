@@ -1,0 +1,7 @@
+language: cpp
+sudo: enabled
+os: linux
+install :
+        sudo make install
+        make cramer
+
