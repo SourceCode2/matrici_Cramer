@@ -18,20 +18,23 @@ namespace Fraction_ns {
 			this->denom *= -1;
 			this->numer *= -1;
 		}
+		if (this->denom == 0) {
+			std::cerr << "Error denom is zero" << '\n';
+		}
 	}
 
 	Fraction::Fraction(const int x)
 		:Fraction(x, 1) {}
 
-		Fraction::Fraction()
+	Fraction::Fraction()
 		:Fraction(0) {}
 
-		Fraction Fraction::Reciprocal() const {
-			Fraction ret(this->denom, this->numer);
-			return ret;
-		}
+	Fraction Fraction::Reciprocal() const {
+		Fraction ret(this->denom, this->numer);
+		return ret;
+	}
 
-		int Fraction::MCD(int x, int y) const {
+	int Fraction::MCD(int x, int y) const {
   	/* Scambio valori Variabili */
   	if(y > x) {
     	int appo = x;
@@ -49,7 +52,7 @@ namespace Fraction_ns {
   		else if(y == 0)
       	return x;
 
-  		while(y != 0) {
+  	while(y != 0) {
     	mcd = y;
     	q = x / y;
     	r = x % y;

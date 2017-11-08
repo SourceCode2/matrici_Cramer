@@ -11,7 +11,7 @@ License GPLv3
 #include <cstdlib>
 #include <ctype.h>
 #include <string>
-#include <Fraction.h>
+#include "../Fraction/Fraction.h"
 
 namespace cramer_ns {
 
