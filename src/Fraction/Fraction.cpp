@@ -37,12 +37,11 @@ namespace Fraction_ns {
 	int Fraction::MCD(int x, int y) const {
   	/* Scambio valori Variabili */
   	if(y > x) {
-    	int appo = x;
-    	x = y;
-    	y = appo;
+    		int appo = x;
+    		x = y;
+    		y = appo;
   	}
   	/* Dichiarazione Variabili */
-  	int q = 1;
   	int r = 1;
   	int mcd = 0;
   	if(x == 0 && y == 0)
@@ -53,11 +52,10 @@ namespace Fraction_ns {
       	return x;
 
   	while(y != 0) {
-    	mcd = y;
-    	q = x / y;
-    	r = x % y;
-    	x = y;
-    	y = r;
+    		mcd = y;
+    		r = x % y;
+    		x = y;
+    		y = r;
   	}
   	return mcd;
 	}
