@@ -2,6 +2,5 @@ language: cpp
 sudo: enabled
 os: linux
 install :
-        sudo make install;
-        make cramer;
+        sudo make install && make cramer && make esempio_Fraction
 
