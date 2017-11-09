@@ -1,6 +1,5 @@
 
-# Il metodo di Cramer in C++   
-[![Build Status](https://travis-ci.org/SourceCode2/matrici_Cramer.svg?branch=master)](https://travis-ci.org/SourceCode2/matrici_Cramer) [![Coverage Status](https://coveralls.io/repos/github/SourceCode2/matrici_Cramer/badge.svg?branch=master)](https://coveralls.io/github/SourceCode2/matrici_Cramer?branch=master)
+# Il metodo di Cramer in C++[![Build Status](https://travis-ci.org/SourceCode2/matrici_Cramer.svg?branch=master)](https://travis-ci.org/SourceCode2/matrici_Cramer) [![Coverage Status](https://coveralls.io/repos/github/SourceCode2/matrici_Cramer/badge.svg?branch=master)](https://coveralls.io/github/SourceCode2/matrici_Cramer?branch=master)  
 Cramer è un metodo di risoluzione per sistemi di equazioni lineari  
 che ho riprodotto in queste librerie in C++.
 
