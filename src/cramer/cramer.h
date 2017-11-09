@@ -9,7 +9,7 @@ License GPLv3
 #ifndef CRAMER_H
 #define CRAMER_H
 #include <string>
-#include "../Fraction/Fraction.h"
+#include <Fraction.h>
 
 using namespace Fraction_ns;
 namespace cramer_ns {
