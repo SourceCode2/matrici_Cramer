@@ -11,5 +11,5 @@ install:
 script:
         - cd src/
         - sudo make install
-        - make cramer
-        - make esempio_Fraction
+        - make -B cramer
+        - make -B esempio_Fraction
