@@ -12,7 +12,6 @@ install:
 
 before_script:
 - cd ${TRAVIS_BUILD_DIR}
-- lcov --directory . --zerocounters
 
 script:
         - cd src/
