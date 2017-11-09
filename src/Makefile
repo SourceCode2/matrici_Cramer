@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall --std=c++11
+CFLAGS = -Wall --std=c++11 --coverage
 LIB = -lFraction -lcramer
 cramer:
 	$(CC) -o ../bin/cramer main.cpp $(CFLAGS) $(LIB)
